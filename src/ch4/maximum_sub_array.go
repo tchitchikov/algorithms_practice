@@ -2,6 +2,7 @@ package ch4
 
 import (
 	"common"
+	"fmt"
 )
 
 func FindMaxCrossingSubarray(input []int) (maxLeft int, maxRight int, sum int) {
@@ -17,9 +18,10 @@ func FindMaxCrossingSubarray(input []int) (maxLeft int, maxRight int, sum int) {
 	sum = 0
 	for iter := common.FindIntArrayMidpoint(input) + 1; iter < len(input); iter++ {
 		sum = sum + input[iter]
-		if sum > rightSum {
+		if sum > rightSum || iter == common.FindIntArrayMidpoint(input)+1 {
 			rightSum = sum
 			maxRight = iter
+			fmt.Println(sum, rightSum, maxRight)
 		}
 	}
 	sum = leftSum + rightSum
