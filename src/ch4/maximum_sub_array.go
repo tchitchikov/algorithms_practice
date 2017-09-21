@@ -60,29 +60,23 @@ func FindMaxSubarrayBruteForce(input []int) (output []int, sumValue int, leftPos
 	return output, sumValue, leftPos, rightPos
 }
 
-func MaxSubarrayKadane(input []int) (output []int, sumValue int) {
+func MaxSubarrayKadane(input []int) (outputArray []int, answer int) {
 	var sum int
+	var loc []int
 	for i := 0; i < len(input); i++ {
 		if sum+input[i] > 0 {
 			sum = sum + input[i]
+			loc = append(loc, input[i])
 		} else {
-			output = []int{}
 			sum = 0
+			loc = []int{}
 		}
-		if sum >= sumValue {
-			output = append(output, i)
-			sumValue = sum
+		if sum >= answer {
+			outputArray = loc[:]
+			answer = sum
 		}
 	}
-	if output[0] > 0 && output[len(output)-1]+1 <= len(input)-1 {
-		output = input[output[0]-1 : output[len(output)-1]+1]
-	} else if output[0] > 0 {
-		output = input[output[0]-1 : output[len(output)-1]]
-	} else {
-		output = input[0:output[len(output)-1]]
-	}
-
-	return output, sumValue
+	return outputArray, answer
 }
 
 func sum(input []int) (output int) {
