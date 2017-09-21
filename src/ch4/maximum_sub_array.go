@@ -41,3 +41,28 @@ func FindMaxSubarray(input []int, low int, high int) (int, int, int) {
 	}
 	return crossLow, crossHigh, crossSum
 }
+
+func FindMaxSubarrayBruteForce(input []int) (output []int, sumValue int, leftPos int, rightPos int) {
+	// array size
+	for i := 1; i < len(input); i++ {
+		// array values
+		for j := 0; j+i < len(input); j++ {
+			var iteratorArray []int
+			iteratorArray = input[j : j+i]
+			if sum(iteratorArray) > sumValue {
+				sumValue = sum(iteratorArray)
+				output = iteratorArray
+				leftPos = j
+				rightPos = j + i - 1
+			}
+		}
+	}
+	return output, sumValue, leftPos, rightPos
+}
+
+func sum(input []int) (output int) {
+	for _, x := range input {
+		output = output + x
+	}
+	return output
+}
