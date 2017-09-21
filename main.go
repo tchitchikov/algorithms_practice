@@ -12,4 +12,5 @@ func main() {
 	// fmt.Println(ch4.FindMaxCrossingSubarray(common.TimeSeriesMove(inputArray), 0, common.FindIntArrayMidpoint(inputArray), len(inputArray)))
 	// fmt.Println(ch4.FindMaxSubarray(common.TimeSeriesMove(inputArray), 0, len(common.TimeSeriesMove(inputArray))-1))
 	fmt.Println(ch4.FindMaxSubarrayBruteForce(common.TimeSeriesMove(inputArray)))
+	fmt.Println(ch4.MaxSubarrayKadane(common.TimeSeriesMove(inputArray)))
 }
